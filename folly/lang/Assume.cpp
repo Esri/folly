@@ -15,15 +15,16 @@
  */
 
 #include <folly/lang/Assume.h>
-
-#include <glog/logging.h>
+#include <iostream>
 
 namespace folly {
 
 namespace detail {
 
 void assume_check(bool cond) {
-  CHECK(cond) << "compiler-hint assumption fails at runtime";
+  std::ios_base::Init ioInit;
+  std::cerr << "compiler-hint assumption fails at runtime";
+  std::abort();
 }
 
 } // namespace detail
